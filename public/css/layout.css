@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+body {
+    font-family: var(--main-font);
+}
+
+.siteHeader,
+.siteFooter {
+    color: white;
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    display:table;
+    height: 100%;
+}
+
+
+.siteHeader__title {
+    font-family: var(--brand-font);
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+.siteHeader__additionalTitle {
+    font-weight: bold;
+}
+
+.pageTitle {
+    color: var(--main-bg-color);
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.banner {
+    vertical-align: middle;
+    display:table-cell;
+}
+
+
+
