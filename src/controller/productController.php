@@ -24,3 +24,12 @@ function productFakeAction(){
     renderView($dataPage);
 
 }
+
+/**
+ * Récupère les données du produit 10 et construit la page à servir
+ */
+function product10Action(){
+
+    $connexionBdd = connectionBdd();
+
+}
