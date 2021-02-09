@@ -36,17 +36,20 @@ function product10Action()
     $output = 'aucun problème';
     try {
         $connexionBdd = connectionBdd();
+        $product = getProduct10($connexionBdd);
+        ob_start();
+        require '../templates/product/productCard.php';
+        $output = ob_get_clean();
 
     } catch (Exception $e) {
         $output = $e->getMessage();
     }
 
     $dataPage = [
-        'title'       => 'Telem - Produit 10',
-        'titlePage'   => 'Fiche du produit 10',
+        'title'       => 'Telem - '.$product['designation'],
+        'titlePage'   => $product['designation'],
         'mainContent' => $output,
     ];
 
     renderView($dataPage);
-
 }

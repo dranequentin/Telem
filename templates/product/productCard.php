@@ -13,14 +13,14 @@
 <!--</article>-->
 <article class="productCard">
     <h1 class="productCard__title">
-        <?php echo $product['title']; ?>
+        <?php echo $product['designation']; ?>
     </h1>
     <div class="productCard__image">
-        <img class="image" src="../../public/images/<?php echo $product['image']; ?>">
+        <img class="image" src="../../public/images/<?php echo $product['fichierImage']; ?>">
     </div>
     <div class="productCard__description">
         <?php echo $product['description']; ?>
     </div>
-    <p class="productCard__price"><?php echo $product['price']; ?></p>
+    <p class="productCard__price"><?php echo $product['prix']; ?></p>
 </article>
 
