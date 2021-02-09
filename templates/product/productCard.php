@@ -2,5 +2,12 @@
     <h1 class="productCard__title">
         Faux produit
     </h1>
+    <div class="productCard__image">
+        <img class="image" src="../../public/images/ecran-tactile-mal.png">
+    </div>
+    <div class="productCard__description">
+        Magnifique machine à laver avec un écran 4K !!!
+    </div>
+    <p class="productCard__price">9999,99</p>
 </article>
 
