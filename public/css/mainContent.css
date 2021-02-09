@@ -1,0 +1,8 @@
+.mainContent__content {
+    padding: 10px;
+    line-height: 2rem;
+}
+
+.mainContent__content > p {
+    padding-bottom: 10px;
+}
