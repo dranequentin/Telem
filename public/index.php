@@ -1,11 +1,4 @@
 <?php
-
-require_once '../src/lib/helper.php';
-
-$dataPage = [
-    'title'=> 'Telem - Accueil',
-    'titlePage'=> 'Accueil',
-    'mainContent' => 'Bienvenue sur la page d\'accueil'
-];
-renderView($dataPage);
+require_once '../src/controller/homeController.php';
+indexAction();
 
