@@ -21,6 +21,6 @@ function productFakeAction(){
         'mainContent' => $output
     ];
 
-    layout($dataPage);
+    renderView($dataPage);
 
 }

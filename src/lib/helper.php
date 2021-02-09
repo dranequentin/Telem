@@ -13,7 +13,7 @@
  *
  */
 //function layout($title, $titlePage, $mainContent = 'Page d\'accueil'){
-function layout($dataPage){
+function renderView($dataPage){
     require_once '../templates/layout/header.php';
     require_once '../templates/layout/menu.php';
     require_once '../templates/layout/mainContent.php';

@@ -7,5 +7,5 @@ $dataPage = [
     'titlePage'=> 'Accueil',
     'mainContent' => 'Bienvenue sur la page d\'accueil'
 ];
-layout($dataPage);
+renderView($dataPage);
 
