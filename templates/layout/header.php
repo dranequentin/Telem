@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../public/css/layout.css">
     <link rel="stylesheet" href="../../public/css/menu.css">
     <link rel="stylesheet" href="../../public/css/mainContent.css">
+    <link rel="stylesheet" href="../../public/css/productCard.css">
 </head>
 <body class="mainGridContainer">
 <header class="siteHeader">
