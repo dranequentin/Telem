@@ -5,9 +5,11 @@
 require_once '../src/lib/helper.php';
 require_once '../src/repository/productRepository.php';
 /**
- * Récupère les données d'un faux produit et communique celles-ci aux templates utilisés
+ * Récupère les données d'un faux produit et communique celles-ci aux templates
+ * utilisés
  */
-function productFakeAction(){
+function productFakeAction()
+{
     $product = getFakeProduct();
     ob_start();
 
@@ -16,9 +18,9 @@ function productFakeAction(){
     $output = ob_get_clean();
 
     $dataPage = [
-        'title'=> 'Telem - Faux produit',
-        'titlePage'=> 'Fiche d\'un faux produit',
-        'mainContent' => $output
+        'title'       => 'Telem - Faux produit',
+        'titlePage'   => 'Fiche d\'un faux produit',
+        'mainContent' => $output,
     ];
 
     renderView($dataPage);
@@ -28,8 +30,23 @@ function productFakeAction(){
 /**
  * Récupère les données du produit 10 et construit la page à servir
  */
-function product10Action(){
+function product10Action()
+{
 
-    $connexionBdd = connectionBdd();
+    $output = 'aucun problème';
+    try {
+        $connexionBdd = connectionBdd();
+
+    } catch (Exception $e) {
+        $output = $e->getMessage();
+    }
+
+    $dataPage = [
+        'title'       => 'Telem - Produit 10',
+        'titlePage'   => 'Fiche du produit 10',
+        'mainContent' => $output,
+    ];
+
+    renderView($dataPage);
 
 }
