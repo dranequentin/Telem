@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Telem</title>
+    <title><?php echo $dataPage['title']; ?></title>
     <link rel="stylesheet" href="../../public/css/reset.css">
     <link rel="stylesheet" href="../../public/css/var.css">
     <link rel="stylesheet" href="../../public/css/grid.css">

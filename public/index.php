@@ -1,6 +1,11 @@
 <?php
 
-require_once '../templates/layout/header.php';
-require_once '../templates/layout/menu.php';
-require_once '../templates/layout/mainContent.php';
-require_once '../templates/layout/footer.php';
+require_once '../src/lib/helper.php';
+
+$dataPage = [
+    'title'=> 'Telem - Accueil',
+    'titlePage'=> 'Accueil',
+    'mainContent' => 'Bienvenue sur la page d\'accueil'
+];
+layout($dataPage);
+
