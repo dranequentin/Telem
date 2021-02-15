@@ -9,10 +9,10 @@
 function getFakeProduct()
 {
     $product = [
-        'designation' => 'Faux produit',
+        'designation'  => 'Faux produit',
         'fichierImage' => 'ecran-tactile-mal.png',
-        'description' => 'Magnifique machine à laver avec un écran 4K !!!',
-        'prix' => 9999.99,
+        'description'  => 'Magnifique machine à laver avec un écran 4K !!!',
+        'prix'         => 9999.99,
 
     ];
 
@@ -45,12 +45,51 @@ function getProduct10($connexion)
             'Il y a un problème pour récupérer le résultat de la requête'
         );
     }
-    
+
     return $product;
 
 }
 
-function getProductById($connexion, $id)
+/**
+ * Obtient un produit en fonction de son identifiant
+ *
+ * @param PDO $connexion connexion à la bdd
+ * @param int $id        id du produit
+ *
+ * @return array tableau associatif dont les clés correspondent au nom des
+ *               colonnes de la table produit
+ * @throws Exception
+ */
+function getProductById(PDO $connexion, int $id): array
 {
+
+    $query = $connexion->prepare('SELECT * FROM produit WHERE idProduit = :id');
+
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    try {
+        $resultIsOk = $query->execute();
+
+        //si la requête échoue on lève une exception pour exécuter le code du bloc catch
+        if (!$resultIsOk) {
+            throw new Exception('L\exécution de la requête a échoué');
+        }
+
+
+        $product = $query->fetch(PDO::FETCH_ASSOC);
+
+        //si la récupération échoue ou s'il n'y a aucun résultat, fetch retourne false. Dans ce cas, nous retournons un tableau vide
+        if ($product === false) {
+            return [];
+        }
+
+
+    } catch (Exception $e) {
+        throw new Exception(
+            'Un problème est survenue : '.$e->getMessage()
+        );
+    }
+
+
+    return $product;
 
 }

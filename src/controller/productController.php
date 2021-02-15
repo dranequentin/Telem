@@ -62,3 +62,51 @@ function product10Action()
 
     renderView($dataPage);
 }
+
+
+/**
+ * Construit la page relative à un produit donné
+ */
+function productXAction(): void
+{
+    //valeurs par défaut de la page
+    $dataPage = [
+        'title'     => 'Telem - fiche produit X',
+        'titlePage' => 'fiche-produit-X',
+    ];
+
+    //récupération de l'id passé dans l'url lorsqu'il existe
+    $idProduit = 0;
+    if (isset($_GET['id'])) {
+        $idProduit = intval($_GET['id']);
+    }
+
+    //récupération du produit dont l'id a été passé dans l'url
+    $connexion = connectionBdd();
+
+    try {
+        $product = getProductById($connexion, $idProduit);
+
+        if (empty($product)) {
+            $output = 'Aucun résultat';
+            $dataPage['mainContent'] = $output;
+        } else {
+            ob_start();
+            require '../templates/product/productCard.php';
+            $output = ob_get_clean();
+            $dataPage = [
+                'title'       => 'Telem - '.$product['designation'],
+                'titlePage'   => $product['designation'],
+                'mainContent' => $output,
+            ];
+        }
+
+
+    } catch (Exception $e) {
+        $output = $e->getMessage();
+        $dataPage['mainContent'] = $output;
+    }
+
+    renderView($dataPage);
+
+}
