@@ -110,3 +110,34 @@ function productXAction(): void
     renderView($dataPage);
 
 }
+
+/**
+ * Sert la page avec tous les produits au catalogue
+ */
+function listProducts()
+{
+    $dataPage = [
+        'title'     => 'Telem - catalogue',
+        'titlePage' => 'Catalogue de nos produits',
+    ];
+
+    $connexion = connectionBdd();
+    try {
+        $products = getAllProducts($connexion);
+        $viewData['nbProducts'] = count($products);
+        $viewData['products'] = $products;
+        $viewData['isCatalog'] = true;
+
+        ob_start();
+//        var_dump($products);
+        require '../templates/product/listProducts.php';
+        $output = ob_get_clean();
+
+    } catch (Exception $e) {
+        $output = $e->getMessage();
+    }
+    $dataPage['mainContent'] = $output;
+
+    renderView($dataPage);
+
+}

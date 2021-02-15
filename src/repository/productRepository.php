@@ -93,3 +93,33 @@ function getProductById(PDO $connexion, int $id): array
     return $product;
 
 }
+
+/**
+ * Retourne tous les produits
+ * 
+ * @param PDO $connexion
+ *
+ * @return array tableau de tableaux associatifs
+ * @throws Exception
+ */
+function getAllProducts(PDO $connexion): array
+{
+
+    $query = $connexion->query('SELECT * FROM produit');
+
+    if ($query === false) {
+        throw new Exception('Erreur dans la requête');
+    }
+
+    //récupération de tous les produits et on les charge dans la mémoire du SGBDR
+//    return $query->fetchAll(PDO::FETCH_ASSOC);
+    $products = [];
+    //récupération des produits un par un. (cela évite de saturer la mémoire du SGBDR si jamais il y avait un très grand nombre de produits)
+    while($product = $query->fetch(PDO::FETCH_ASSOC)){
+        $products[] = $product;
+    }
+
+    return $products;
+
+
+}
