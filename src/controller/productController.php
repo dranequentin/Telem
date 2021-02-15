@@ -33,6 +33,12 @@ function productFakeAction()
 function product10Action()
 {
 
+    //valeurs par défaut de la page
+    $dataPage = [
+        'title'     => 'Telem - fiche produit 10',
+        'titlePage' => 'fiche-produit-10',
+    ];
+
     $output = 'aucun problème';
     try {
         $connexionBdd = connectionBdd();
@@ -41,15 +47,18 @@ function product10Action()
         require '../templates/product/productCard.php';
         $output = ob_get_clean();
 
+        $dataPage = [
+            'title'       => 'Telem - '.$product['designation'],
+            'titlePage'   => $product['designation'],
+            'mainContent' => $output,
+        ];
+
     } catch (Exception $e) {
         $output = $e->getMessage();
+        $dataPage = [
+            'mainContent' => $output,
+        ];
     }
-
-    $dataPage = [
-        'title'       => 'Telem - '.$product['designation'],
-        'titlePage'   => $product['designation'],
-        'mainContent' => $output,
-    ];
 
     renderView($dataPage);
 }
