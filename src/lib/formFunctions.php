@@ -16,7 +16,7 @@ function formInput(
 ): string {
 
     $html = <<<html
-    <input class="fondColore" id="$name" type="$type" name="$name" value="$value">
+    <input class="formInput" id="$name" type="$type" name="$name" value="$value">
 html;
 
     return $html;
@@ -34,7 +34,7 @@ html;
 function formLabel(string $label, string $inputNameLinked): string
 {
     $html = <<<html
-    <label for="$inputNameLinked">$label</label>
+    <label class="formLabel" for="$inputNameLinked">$label</label>
 html;
 
     return $html;
@@ -62,7 +62,7 @@ function formRow(
 ): string {
     $html = '';
     if ($wrapTag != '') {
-        $html .= "<$wrapTag>";
+        $html .= "<$wrapTag class=\"formRow\">";
     }
     if ($label != '') {
         $html .= formLabel($label, $name); //$html = $html.formLabel();
@@ -117,7 +117,7 @@ function formRow2(
 function formStart(string $action): string
 {
     $html = <<<html
-        <form action="$action" method="post">
+        <form class="form" action="$action" method="post">
 html;
 
     return $html;

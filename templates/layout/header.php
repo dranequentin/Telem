@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../public/css/mainContent.css">
     <link rel="stylesheet" href="../../public/css/productCard.css">
     <link rel="stylesheet" href="../../public/css/catalog.css">
+    <link rel="stylesheet" href="../../public/css/form.css">
 </head>
 <body class="mainGridContainer">
 <header class="siteHeader">

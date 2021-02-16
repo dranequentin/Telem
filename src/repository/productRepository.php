@@ -96,7 +96,7 @@ function getProductById(PDO $connexion, int $id): array
 
 /**
  * Retourne tous les produits
- * 
+ *
  * @param PDO $connexion
  *
  * @return array tableau de tableaux associatifs
@@ -115,11 +115,48 @@ function getAllProducts(PDO $connexion): array
 //    return $query->fetchAll(PDO::FETCH_ASSOC);
     $products = [];
     //récupération des produits un par un. (cela évite de saturer la mémoire du SGBDR si jamais il y avait un très grand nombre de produits)
-    while($product = $query->fetch(PDO::FETCH_ASSOC)){
+    while ($product = $query->fetch(PDO::FETCH_ASSOC)) {
         $products[] = $product;
     }
 
     return $products;
 
 
+}
+
+/**
+ * Insère un produit dans la bdd
+ *
+ * @param PDO   $connexion connexion à la bdd
+ * @param array $product   tableau associatif dont les clés correspondent aux
+ *                         noms des colonnes de la table produit dans la bdd
+ *
+ * @return array tableau associatif représentant le produit inséré dont les
+ *               clés correspondent aux noms des colonnes de la table produit ou un tableau vide si l'insertion a échoué
+ */
+function createProduct(PDO $connexion, array $product): array
+{
+    $query = $connexion->prepare(
+        "INSERT INTO produit VALUES (NULL,:designation,:description,now(),:qte,:prix, 'nophoto.jpg', 88)"
+    );
+
+    $query->bindValue(':designation', $product['designation'], PDO::PARAM_STR);
+    $query->bindValue(':description', $product['description'], PDO::PARAM_STR);
+    $query->bindValue(':qte', $product['qte'], PDO::PARAM_STR);
+    $query->bindValue(':prix', $product['prix'], PDO::PARAM_STR);
+
+    try {
+        $insertIsOk = $query->execute();
+
+        //récupération du produit inséré
+        if($insertIsOk){
+           $id = intval($connexion->lastInsertId());
+           return getProductById($connexion,$id);
+        }
+
+        return [];
+
+    } catch (Exception $e) {
+        throw new Exception('Un problème est survenu lors de l\'exécution de la requête.');
+    }
 }

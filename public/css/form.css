@@ -1,0 +1,49 @@
+.form {
+}
+
+.formInput {
+    padding: 5px;
+    border: none;
+    border-bottom: solid var(--main-menu-bg-color) 2px;
+    background-color: #dfecec;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.formInput:focus {
+    outline:0;
+    border-bottom: solid pink ;
+    background-color: #ffeaee;
+    color: deeppink;
+}
+
+.formInput[type=submit] {
+    display: block;
+    background-color: var(--main-menu-bg-color);
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    margin : 0 auto;
+
+}
+
+.formInput[type=submit]:hover {
+    background-color: var(--main-menu-item-hover-bg-color);
+}
+
+.formLabel {
+    display: block;
+    color: var(--main-menu-bg-color);
+    font-weight: bold;
+    padding: 5px 0 5px 0;
+}
+
+.formRow {
+    padding: 5px 0 5px 0;
+}
+
+.formRow:last-child{
+    padding-top: 20px;
+}

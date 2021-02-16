@@ -130,7 +130,6 @@ function listProducts()
         $viewData['isCatalog'] = true;
 
         ob_start();
-//        var_dump($products);
         require '../templates/product/listProducts.php';
         $output = ob_get_clean();
 
@@ -193,10 +192,46 @@ function formCreateProduct()
         ],
     ];
 
-    $formCreate = formForm('bidon.php', $formData);
+    $formCreate = formForm('insertion-du-produit.php', $formData);
 
 
     $dataPage['mainContent'] = $formCreate;
+
+    renderView($dataPage);
+
+}
+
+function addProductInBdd()
+{
+    $dataPage = [
+        'title'     => 'Telem - insertion du produit',
+        'titlePage' => 'Résultat de l\'insertion du produit',
+    ];
+
+    //récupération des données postées
+    $product['designation'] = $_POST['designation'];
+    $product['description'] = $_POST['description'];
+    $product['prix'] = $_POST['prix'];
+    $product['qte'] = $_POST['qte'];
+
+    //insertion en bdd
+    $connexion = connectionBdd();
+    try {
+        $product = createProduct($connexion, $product);
+        if (empty($product)) {
+            $viewData['message'] = "Le produit n'a pas été inséré dans la bdd";
+        }else{
+            $viewData['message'] = "Le produit a été inséré dans la bdd avec l'identifiant ".$product['idProduit'];
+        }
+    } catch (Exception $e) {
+        $viewData['message'] = $e->getMessage();
+    }
+
+    ob_start();
+    require '../templates/message/default.php';
+    $output = ob_get_clean();
+
+    $dataPage['mainContent'] = $output;
 
     renderView($dataPage);
 

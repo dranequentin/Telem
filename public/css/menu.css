@@ -1,7 +1,7 @@
 :root {
     --menu-item-separator: solid 1px white;
     /* fond des items du menu */
-    --main-menu-bg-color: cadetblue;
+    --main-menu-bg-color: #5f9ea0;
     --main-menu-item-hover-bg-color: #006064;
 }
 
