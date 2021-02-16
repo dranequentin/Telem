@@ -3,6 +3,7 @@
 
 //inclusions des fichiers utiles aux contrôleurs
 require_once '../src/lib/helper.php';
+require_once '../src/lib/formFunctions.php';
 require_once '../src/repository/productRepository.php';
 /**
  * Récupère les données d'un faux produit et communique celles-ci aux templates
@@ -137,6 +138,65 @@ function listProducts()
         $output = $e->getMessage();
     }
     $dataPage['mainContent'] = $output;
+
+    renderView($dataPage);
+
+}
+
+/**
+ * Insère un produit dans la bdd
+ */
+function formCreateProduct()
+{
+    $dataPage = [
+        'title'     => 'Telem - ajout produit',
+        'titlePage' => 'Formulaire d\'ajout d\'un produit',
+    ];
+
+    //tableau contenant les éléments du formulaire à créer
+    //chaque valeur du tableau est un tableau associatif
+    $formData = [
+        [
+            'name'    => 'designation',
+            'label'   => 'Désignation',
+            'value'   => '',
+            'type'    => 'text',
+            'wrapTag' => 'p',
+        ],
+        [
+            'name'    => 'description',
+            'label'   => 'Description',
+            'value'   => '',
+            'type'    => 'text',
+            'wrapTag' => 'p',
+        ],
+        [
+            'name'    => 'qte',
+            'label'   => 'Quantite',
+            'value'   => '',
+            'type'    => 'number',
+            'wrapTag' => 'p',
+        ],
+        [
+            'name'    => 'prix',
+            'label'   => 'Prix',
+            'value'   => '',
+            'type'    => 'text',
+            'wrapTag' => 'p',
+        ],
+        [
+            'name'    => 'valider',
+            'label'   => '',
+            'value'   => 'Valider',
+            'type'    => 'submit',
+            'wrapTag' => 'p',
+        ],
+    ];
+
+    $formCreate = formForm('bidon.php', $formData);
+
+
+    $dataPage['mainContent'] = $formCreate;
 
     renderView($dataPage);
 

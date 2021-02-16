@@ -4,4 +4,5 @@
     <a href="/public/fiche-produit-10.php" class="mainMenu__item">Produit 10</a>
     <a href="/public/fiche-produit.php" class="mainMenu__item">Produit X</a>
     <a href="/public/catalogue.php" class="mainMenu__item">Catalogue</a>
+    <a href="/public/ajouter-un-produit.php" class="mainMenu__item">Ajouter un produit</a>
 </nav>

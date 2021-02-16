@@ -42,4 +42,9 @@
     font-weight: bold;
     border-radius: 3px;
     padding: 3px;
+    color: white;
+}
+
+.wrapBlockLink {
+    text-decoration: none;
 }

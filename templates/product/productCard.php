@@ -11,6 +11,8 @@
 <!--    </div>-->
 <!--    <p class="productCard__price">9999,99</p>-->
 <!--</article>-->
+
+
 <article class="productCard">
     <h1 class="productCard__title">
         <?php echo $product['designation']; ?>
