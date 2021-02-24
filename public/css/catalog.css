@@ -1,3 +1,16 @@
-.catalog > .productCard {
+.wrapBlockLink {
     border: silver 1px solid;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.wrapBlockLink:hover {
+    outline: var(--main-menu-bg-color) 5px solid;
+}
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(min-content, var(--productCard-max-width)));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
 }

@@ -4,7 +4,7 @@
 
 
 .productCard {
-    max-width: 400px;
+    max-width: var(--productCard-max-width);
     /*border: solid red 1px;*/
     text-align: center;
 }
@@ -45,6 +45,3 @@
     color: white;
 }
 
-.wrapBlockLink {
-    text-decoration: none;
-}
