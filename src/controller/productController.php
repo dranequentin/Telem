@@ -201,7 +201,10 @@ function formCreateProduct()
 
 }
 
-function addProductInBdd()
+/**
+ * Insertion d'un produit dans la bdd
+ */
+function addProductInBddAction():void
 {
     $dataPage = [
         'title'     => 'Telem - insertion du produit',
@@ -213,6 +216,7 @@ function addProductInBdd()
     $product['description'] = $_POST['description'];
     $product['prix'] = $_POST['prix'];
     $product['qte'] = $_POST['qte'];
+
 
     //insertion en bdd
     $connexion = connectionBdd();

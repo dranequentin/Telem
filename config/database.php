@@ -4,6 +4,6 @@ $configDatabase = [
     'user'    => 'Unam',
     'pwd'     => 'toto',
     'host'    => 'localhost',
-    'port'    => '3306',
+    'port'    => '3307',
     'charset' => 'UTF8',
 ];

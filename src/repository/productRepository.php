@@ -132,7 +132,9 @@ function getAllProducts(PDO $connexion): array
  *                         noms des colonnes de la table produit dans la bdd
  *
  * @return array tableau associatif représentant le produit inséré dont les
- *               clés correspondent aux noms des colonnes de la table produit ou un tableau vide si l'insertion a échoué
+ *               clés correspondent aux noms des colonnes de la table produit
+ *               ou un tableau vide si l'insertion a échoué
+ * @throws Exception Echec de l'exécution de la requête
  */
 function createProduct(PDO $connexion, array $product): array
 {
