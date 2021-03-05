@@ -1,5 +1,8 @@
 # Application web développée en procédurale
 
+### Public
+Etudiants de BTS SIO
+
 ## Objectifs
 Application web développée en procédurale afin d'appréhender l'utilisation des fonctions. L'application est architecturée de façon à se rapprocher d'une architecture MVC.
 L'objectif est de faire évoluer cette application.
