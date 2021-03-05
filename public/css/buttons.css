@@ -1,0 +1,71 @@
+/*
+Elément Bloc pour les boutons
+
+Le design utilisé répond aux bonnes pratiques de l'expérience utilisateur
+
+Voir cet article qui  illustre assez bien cet aspect (même s'il n'est pas parfait) :
+ https://uxmovement.com/buttons/how-to-design-destructive-actions-that-prevent-data-loss/
+
+Exemples d'utilisation :
+<a href="#!" class="button">action sans conséquence</a>
+<a href="#!" class="button --danger">proposer une action irréversible (ex : maj)</a>
+<a href="#!" class="button --danger --confirm">confirmer une action irréversible</a>
+<a href="#!" class="button --alert">Action réversible par un moyen ou un autre (ex: suppression)</a>
+<a href="#!" class="button --alert --confirm">Confirmer l'action réversible</a>
+*/
+
+
+:root {
+    --button-alert-color: purple; /* action qui peut être rectifiée d'une façon ou d'une autre */
+    --button-danger-color: red; /* action irréversible */
+    --button-bg-color: white; /* action sans conséquence */
+}
+
+.button {
+    display: inline-block;
+    color: black;
+    border: 1px solid; /* sans couleur, c'est la valeur de "color" qui est utilisée */
+    border-radius: var(--radius-medium);
+    padding: var(--space-medium) var(--space-big);
+    text-decoration: none;
+    background-color: var(--button-bg-color);
+    width: 100%;
+    text-align: center;
+    margin: var(--space-small);
+    box-sizing: border-box;
+}
+
+.button:hover {
+    /*outline: 2px solid;*/
+    /*border-radius: var(--radius-base);*/
+    box-shadow: 0 0 0 2pt;
+}
+
+.button.--danger {
+    color: var(--button-danger-color);
+    --current-border-color: var(--button-danger-color);
+}
+
+.button.--danger.--confirm {
+    background-color: var(--button-danger-color);
+}
+
+.button.--alert {
+    color: var(--button-alert-color);
+    --current-border-color: var(--button-alert-color);
+}
+
+.button.--alert.--confirm {
+    background-color: var(--button-alert-color);
+}
+
+
+.button.--confirm {
+    color: white;
+}
+
+.button.--confirm:hover {
+    /*text-decoration: underline;*/
+    box-shadow: 0 0 0 2pt var(--current-border-color);
+
+}
