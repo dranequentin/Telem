@@ -7,25 +7,25 @@
 }
 
 /* modificateurs pour l'élément image afin de mettre à l'échelle "la plus basse" l'image par rapport à ses dimensions */
-.image.--scale {
+img.--scale {
     object-fit: scale-down;
     /*border: solid 1px pink;*/
 }
 
 /* modificateur pour la taille de l'image */
-.image.--small {
+img.--small {
     height: 150px;
     width: 150px;
 }
 
 /* modificateur pour la taille de l'image */
-.image.--medium {
+img.--medium {
     height: 300px;
     width: 300px;
 }
 
 /* modificateur pour la taille de l'image */
-.image.--big {
+img.--big {
     height: 450px;
     width: 450px;
 }

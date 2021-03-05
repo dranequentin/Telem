@@ -1,7 +1,7 @@
 .wrapBlockLink {
     border: silver 1px solid;
     text-decoration: none;
-    padding: 20px;
+    padding: var(--space-biggest);
 }
 
 .wrapBlockLink:hover {
@@ -11,6 +11,6 @@
 .catalog {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(min-content, var(--productCard-max-width)));
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: var(--space-biggest);
+    grid-row-gap: var(--space-biggest);
 }

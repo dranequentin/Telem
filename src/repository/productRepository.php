@@ -11,7 +11,6 @@ function getFakeProduct()
     $product = [
         'designation'  => 'Faux produit',
         'fichierImage' => 'ecran-tactile-mal.png',
-//        'fichierImage' => 'verysmall.png',
         'description'  => 'Magnifique machine à laver avec un écran 4K !!!',
         'prix'         => 9999.99,
 
