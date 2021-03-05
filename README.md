@@ -1,6 +1,6 @@
 # Application web développée en procédurale
 
-### Public
+## Public
 Etudiants de BTS SIO
 
 ## Objectifs
