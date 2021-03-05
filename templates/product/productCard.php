@@ -18,11 +18,13 @@
         <?php echo $product['designation']; ?>
     </h1>
     <div class="productCard__image">
-        <img class="image" src="../../public/images/<?php echo $product['fichierImage']; ?>">
+        <img class="image --medium --scale" src="../../public/images/<?php echo $product['fichierImage']; ?>">
     </div>
     <div class="productCard__description">
         <?php if(!isset($viewData['isCatalog'])) {echo $product['description'];} ?>
+        <?php if(!isset($viewData['isCatalog'])) {echo $product['description'];} ?>
     </div>
-    <p class="productCard__price"><?php echo $product['prix']; ?></p>
+    <p class="productCard__price"><?php echo $product['prix']; ?> €</p>
 </article>
+
 

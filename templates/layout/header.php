@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../public/css/productCard.css">
     <link rel="stylesheet" href="../../public/css/catalog.css">
     <link rel="stylesheet" href="../../public/css/form.css">
+    <link rel="stylesheet" href="../../public/css/images.css">
 </head>
 <body class="mainGridContainer">
 <header class="siteHeader">

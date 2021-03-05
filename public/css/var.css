@@ -2,5 +2,9 @@
     --brand-font: "Syncopate", sans-serif;
     --main-bg-color: #000000;
     --main-font: 'Noto Sans', sans-serif;
+    --padding-small: 5px;
+    --padding-medium: 10px;
+    --padding-big: 15px;
     --productCard-max-width: 400px;
 }
+
