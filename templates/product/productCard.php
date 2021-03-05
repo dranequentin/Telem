@@ -27,6 +27,9 @@
         </div>
     <?php } ?>
     <p class="productCard__price"><?php echo $product['prix']; ?> €</p>
+    <?php
+    include '_productCard_updateLink.php';
+    ?>
 </article>
 
 

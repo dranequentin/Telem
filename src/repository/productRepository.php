@@ -26,7 +26,7 @@ function getFakeProduct()
  *
  * @return array tableau associatif contenant les données du produit 10
  */
-function getProduct10($connexion)
+function readProduct10($connexion)
 {
     //$query contient soit un objet PDOStatement, soit false (voir documentation)
     $query = $connexion->query('SELECT * FROM produit WHERE idProduit = 10');
@@ -60,7 +60,7 @@ function getProduct10($connexion)
  *               colonnes de la table produit
  * @throws Exception
  */
-function getProductById(PDO $connexion, int $id): array
+function readProductById(PDO $connexion, int $id): array
 {
 
     $query = $connexion->prepare('SELECT * FROM produit WHERE idProduit = :id');
@@ -102,7 +102,7 @@ function getProductById(PDO $connexion, int $id): array
  * @return array tableau de tableaux associatifs
  * @throws Exception
  */
-function getAllProducts(PDO $connexion): array
+function readAllProducts(PDO $connexion): array
 {
 
     $query = $connexion->query('SELECT * FROM produit');
@@ -151,14 +151,58 @@ function createProduct(PDO $connexion, array $product): array
         $insertIsOk = $query->execute();
 
         //récupération du produit inséré
-        if($insertIsOk){
-           $id = intval($connexion->lastInsertId());
-           return getProductById($connexion,$id);
+        if ($insertIsOk) {
+            $id = intval($connexion->lastInsertId());
+
+            return readProductById($connexion, $id);
         }
 
         return [];
 
     } catch (Exception $e) {
-        throw new Exception('Un problème est survenu lors de l\'exécution de la requête.');
+        throw new Exception(
+            'Un problème est survenu lors de l\'exécution de la requête.'
+        );
     }
+}
+
+/**
+ * Met à jour un produit
+ *
+ * @param PDO   $connexion connexion à la bdd
+ * @param array $product   tableau associatif dont les clés correspondent aux
+ *                         noms des colonnes de la table produit dans la bdd
+ *
+ * @return array tableau associatif représentant le produit inséré dont les
+ *               clés correspondent aux noms des colonnes de la table produit
+ *               ou un tableau vide si l'insertion a échoué
+ * @throws Exception Echec de l'exécution de la requête
+ */
+function updateProduct(PDO $connexion, array $product)
+{
+    $query = $connexion->prepare(
+        "UPDATE produit SET designation = :designation, description = :description, qte = :qte, prix = :prix WHERE idProduit = :id"
+    );
+
+    $query->bindValue(':designation', $product['designation'], PDO::PARAM_STR);
+    $query->bindValue(':description', $product['description'], PDO::PARAM_STR);
+    $query->bindValue(':qte', $product['qte'], PDO::PARAM_STR);
+    $query->bindValue(':prix', $product['prix'], PDO::PARAM_STR);
+    $query->bindValue(':id', $product['idProduit'], PDO::PARAM_STR);
+
+    try {
+        $isOK = $query->execute();
+
+        //récupération du produit mis à jour
+        if ($isOK) {
+            return readProductById($connexion, $product['idProduit']);
+        } else {
+            throw new Exception('Echec');
+        }
+    } catch (Exception $e) {
+        throw new Exception(
+            'Un problème est survenu lors de l\'exécution de la requête.'
+        );
+    }
+
 }

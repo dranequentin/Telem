@@ -43,7 +43,7 @@ function product10Action()
     $output = 'aucun problème';
     try {
         $connexionBdd = connectionBdd();
-        $product = getProduct10($connexionBdd);
+        $product = readProduct10($connexionBdd);
         ob_start();
         require '../templates/product/productCard.php';
         $output = ob_get_clean();
@@ -86,7 +86,7 @@ function productXAction(): void
     $connexion = connectionBdd();
 
     try {
-        $product = getProductById($connexion, $idProduit);
+        $product = readProductById($connexion, $idProduit);
 
         if (empty($product)) {
             $output = 'Aucun résultat';
@@ -115,7 +115,7 @@ function productXAction(): void
 /**
  * Sert la page avec tous les produits au catalogue
  */
-function listProducts()
+function listProductsAction()
 {
     $dataPage = [
         'title'     => 'Telem - catalogue',
@@ -124,7 +124,7 @@ function listProducts()
 
     $connexion = connectionBdd();
     try {
-        $products = getAllProducts($connexion);
+        $products = readAllProducts($connexion);
         $viewData['nbProducts'] = count($products);
         $viewData['products'] = $products;
         $viewData['isCatalog'] = true;
@@ -145,7 +145,7 @@ function listProducts()
 /**
  * Insère un produit dans la bdd
  */
-function formCreateProduct()
+function formCreateProductAction()
 {
     $dataPage = [
         'title'     => 'Telem - ajout produit',
@@ -204,7 +204,7 @@ function formCreateProduct()
 /**
  * Insertion d'un produit dans la bdd
  */
-function addProductInBddAction():void
+function addProductInBddAction(): void
 {
     $dataPage = [
         'title'     => 'Telem - insertion du produit',
@@ -224,7 +224,7 @@ function addProductInBddAction():void
         $product = createProduct($connexion, $product);
         if (empty($product)) {
             $viewData['message'] = "Le produit n'a pas été inséré dans la bdd";
-        }else{
+        } else {
             $viewData['message'] = "Le produit a été inséré dans la bdd avec l'identifiant ".$product['idProduit'];
         }
     } catch (Exception $e) {
@@ -239,4 +239,121 @@ function addProductInBddAction():void
 
     renderView($dataPage);
 
+}
+
+/**
+ * Rend la vue qui propose le formulaire prérempli pour le produit à modifier
+ */
+function updateFormProductAction()
+{
+    $dataPage = [
+        'title'     => 'Telem - modification d\'un produit',
+        'titlePage' => 'Formulaire de modification d\'un produit',
+    ];
+
+
+    //s'il n'y a aucun produit à modifier, on redirige vers une autre route
+    if (empty($_GET['id']) || (int)$_GET['id'] === 0) {
+        header('Location: catalogue.php');
+    }
+
+    $id = (int)$_GET['id'];
+
+    //récupération du produit
+    $connection = connectionBdd();
+    try {
+        $product = readProductById($connection, $id);
+
+
+        //chaque valeur du tableau est un tableau associatif
+        $formData = [
+            [
+                'name'    => 'id',
+                'label'   => '',
+                'value'   => $product['idProduit'],
+                'type'    => 'hidden',
+                'wrapTag' => 'p',
+            ],
+            [
+                'name'    => 'designation',
+                'label'   => 'Désignation',
+                'value'   => $product['designation'],
+                'type'    => 'text',
+                'wrapTag' => 'p',
+            ],
+            [
+                'name'    => 'description',
+                'label'   => 'Description',
+                'value'   => $product['description'],
+                'type'    => 'text',
+                'wrapTag' => 'p',
+            ],
+            [
+                'name'    => 'qte',
+                'label'   => 'Quantite',
+                'value'   => $product['qte'],
+                'type'    => 'number',
+                'wrapTag' => 'p',
+            ],
+            [
+                'name'    => 'prix',
+                'label'   => 'Prix',
+                'value'   => $product['prix'],
+                'type'    => 'text',
+                'wrapTag' => 'p',
+            ],
+            [
+                'name'    => 'valider',
+                'label'   => '',
+                'value'   => 'Valider',
+                'type'    => 'submit',
+                'wrapTag' => 'p',
+            ],
+        ];
+
+        $output = formForm('mise-a-jour-du-produit.php', $formData);
+    } catch (Exception $e) {
+        $output = $e->getMessage();
+    }
+
+    $dataPage['mainContent'] = $output;
+
+    renderView($dataPage);
+
+
+}
+
+/**
+ * Met à jour un  produit et redirige sur la fiche du produit concerné
+ */
+function updateProductAction()
+{
+    $dataPage = [
+        'title'     => 'Telem - mise à jour d\'un produit',
+        'titlePage' => 'Echec de la mise à jour du produit',
+    ];
+
+    //récupération des données du formulaire
+    $product['designation'] = $_POST['designation'];
+    $product['description'] = $_POST['description'];
+    $product['prix'] = $_POST['prix'];
+    $product['qte'] = $_POST['qte'];
+    $product['idProduit'] = $_POST['id'];
+
+
+    $connection = connectionBdd();
+    try {
+        $product = updateProduct($connection, $product);
+        header('Location:fiche-produit.php?id='.$product['idProduit']);
+    } catch (Exception $e) {
+        $viewData['message'] = $e->getMessage();
+
+        ob_start();
+        require '../templates/message/default.php';
+        $output = ob_get_clean();
+
+        $dataPage['mainContent'] = $output;
+
+        renderView($dataPage);
+    }
 }

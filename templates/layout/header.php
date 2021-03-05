@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../public/css/catalog.css">
     <link rel="stylesheet" href="../../public/css/form.css">
     <link rel="stylesheet" href="../../public/css/images.css">
+    <link rel="stylesheet" href="../../public/css/buttons.css">
 </head>
 <body class="mainGridContainer">
 <header class="siteHeader">

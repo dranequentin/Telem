@@ -13,9 +13,9 @@
 
 .formInput:focus {
     outline:0;
-    border-bottom: solid pink ;
-    background-color: #ffeaee;
-    color: deeppink;
+    border-bottom: solid #087ba9;
+    background-color: #cbedff;
+    color: #060fa0;
 }
 
 .formInput[type=submit] {

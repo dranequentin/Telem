@@ -38,8 +38,13 @@
     width: 80px;
     background-color: var(--main-menu-bg-color);
     font-weight: bold;
-    border-radius: 3px;
+    border-radius: var(--radius-small);
     padding: var(--space-smallest);
     color: white;
     letter-spacing: 1px;
+}
+
+.productCard_actions {
+    /*ta:c*/
+    padding: var(--space-big);
 }
